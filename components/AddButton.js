@@ -10,7 +10,6 @@ export default function AddButton (props) {
                 <Text 
                 style={{ fontSize: 25, color: colors.blue }}
                 >+</Text>
-                
             </TouchableOpacity>
             <Text style={styles.add}>{props.content}</Text>
         </View>

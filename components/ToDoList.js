@@ -16,13 +16,19 @@ export default class ToDoList extends React.Component {
 
 
     return (
-        
-        <TouchableOpacity>
+        <Modal visible={this.state.showListVisible} onRequestClose={() => this.togListModal}>
+            <View>
+                <Text>
+                    ABC
+                </Text>
+            </View>
+        <TouchableOpacity onPress={() => this.togListModal()}>
             <View>
                 <Text>
                     {list.name}
                 </Text>
             </View>
         </TouchableOpacity>
+        </Modal>
     )}
 }

@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Modal, Alert, SafeAreaView, TextInput } from 'react-native';
-import fire from '../Fire.js'
 
 export default class ToDoListModal extends React.Component {
     state = {
         name: "",
     };
 
-    /*createToDo = () => {
+    createToDo = () => {
         const { name } = this.state
 
         const list = { name }
 
-        this.props.addList(list);
+        this.props.addList(list); 
 
-        this.setState({name: ""})
-        this.props.closeModal();
-    }*/
+        this.setState({name: "" });
+        //this.props.closeModal();
+    };
 
     render() {
         return (
@@ -24,7 +23,8 @@ export default class ToDoListModal extends React.Component {
                 <Text>
                     Créer ToDo List
                 </Text>
-                <TextInput 
+                <TextInput
+                onChangeText={text => this.setState({ name: text })} 
                 placeholder="Nom de la liste"
                 ></TextInput>
                 <TouchableOpacity onPress={this.createToDo}>

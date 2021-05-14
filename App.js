@@ -7,11 +7,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ToDoList from './components/ToDoList';
 import AddButton from './components/AddButton';
 import ToDoListModal from './components/ToDoListModal';
+import ToDoModal from './components/ToDoModal'
 
 export default function App() {
   const [lists, setLists] = useState([]);
   const [loading, setLoading] = useState(true);
   const [ToDoVisible, setToDoVisible] = useState(false);
+  const [ListVisible, setListVisible] = useState(false);
 
 const firebase = new Fire((error) => {
                   if(error) {
@@ -44,22 +46,26 @@ const firebase = new Fire((error) => {
     setToDoVisible(!ToDoVisible);
   }
 
+  function togToDoModal() {
+    setListVisible(!ListVisible);
+  }
+
   const renderItem = ( list ) => {
     return (
-      <TouchableOpacity /*onPress={ }*/ style={styles.list}>
+      <TouchableOpacity onPress={ (togToDoModal)} style={styles.list}>
           <Text style={styles.name}>{list.item.name}</Text>
       </TouchableOpacity>
     );
   };
 
-  function addList(list) {
+  addList = list => {
     firebase.addList({
       name: list.name,
       todos: []
     })
   }
 
-  function updateList(list) {
+  updateList = list => {
     firebase.updateList(list);
   }
 
@@ -71,7 +77,7 @@ const firebase = new Fire((error) => {
         onRequestClose={() => togToDoListModal()}
         style={{ backgroundColor: ToDoVisible ? 'red' : 'blue' }}
       >
-        <ToDoListModal onClose={() => togToDoListModal()} addList={addList} />
+        <ToDoListModal onClose={() => togToDoListModal()} addList={this.addList}/>
       </Modal>
         <Text style={styles.title}>To Do List</Text>
         <View style={styles.gallery}>
