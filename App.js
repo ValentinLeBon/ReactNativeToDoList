@@ -87,6 +87,7 @@ const firebase = new Fire((error) => {
           <FlatList data={lists}
                   renderItem={renderItem}
                   keyExtractor={(list) => list.id}
+                  numColumns={3}
                 />
         </View>
     </View>
@@ -118,10 +119,15 @@ const styles = StyleSheet.create({
   },
   gallery: {
     flex: 2,
+    marginVertical: 5,
   },
   list: {
     backgroundColor: colors.blue,
     borderRadius: 20,
+    padding: 20,
+    marginVertical: 5,
+    marginHorizontal: 2,
+    fontSize: 20,
   },
   addList: {
     position: 'absolute',
@@ -138,11 +144,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 4,
   },
-  primary: {
-    color: 'teal',
-  },
   title: {
+    marginVertical: 48,
     fontSize: 60,
-    marginTop: 20
   }
 });

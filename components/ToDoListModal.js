@@ -20,21 +20,30 @@ export default class ToDoListModal extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>
+                <Text style={styles.title}>
                     Créer ToDo List
                 </Text>
-                <TextInput
-                onChangeText={text => this.setState({ name: text })} 
-                placeholder="Nom de la liste"
-                ></TextInput>
-                <TouchableOpacity onPress={this.createToDo}>
-                    <Text>
-                        Créer !
-                    </Text>
-                </TouchableOpacity>
+                <View style={styles.content}>
+                    <TextInput
+                    onChangeText={text => this.setState({ name: text })}
+                    placeholder="Nom de la liste"
+                    ></TextInput>
+                    <TouchableOpacity style={styles.create} onPress={this.createToDo}>
+                        <Text style={styles.createText}>
+                            Créer !
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
+}
+
+const colors = {
+    black: "#2D3436",
+    blue: "#24A6D9",
+    lightBlue: "#A7CBD9",
+    white: "#FFFFFF",
 }
 
 const styles = StyleSheet.create({
@@ -44,7 +53,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    content: {
+        flex: 2,
+    },
+    title: {
+        marginTop: 20,
+        flex: 2,
+        fontSize: 30,
+    },
     input: {
-        
+        fontSize: 20,
+        borderWidth: 2,
+        borderBottomColor: colors.black,
+    },
+    create: {
+        borderWidth: 2,
+        borderColor: colors.lightBlue,
+        borderRadius: 12,
+        padding: 16,
+    },
+    createText: {
+        color: colors.blue,
+        fontWeight: "bold",
+        marginTop: 4,
+        textAlign: "center",
     }
+
 })
