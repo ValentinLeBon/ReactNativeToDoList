@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ToDoList from './components/ToDoList';
 import AddButton from './components/AddButton';
 import ToDoListModal from './components/ToDoListModal';
-import ToDoModal from './components/ToDoModal'
+import ToDoModal from './components/ToDoModal';
 
 export default function App() {
   const [lists, setLists] = useState([]);
@@ -38,7 +38,9 @@ const firebase = new Fire((error) => {
 
     if(loading) {
         return (
-            <ActivityIndicator size="large" style={styles.primary} />
+            <View style={styles.container}>
+                <ActivityIndicator size="large" style={styles.primary} />
+            </View>
         );
     };
 
@@ -70,6 +72,7 @@ const firebase = new Fire((error) => {
   }
 
   return (
+  <>
     <View style={styles.container}>
       <Modal
         animationType="slide"
@@ -85,15 +88,25 @@ const firebase = new Fire((error) => {
                   renderItem={renderItem}
                   keyExtractor={(list) => list.id}
                 />
-        <TouchableOpacity 
-        style={styles.addButton} 
-        onPress= {() => togToDoListModal()} >
-            <Text>+</Text>
-        </TouchableOpacity>
         </View>
     </View>
+    <View style={{marginVertical: 48}}>
+        <TouchableOpacity style={styles.addList} onPress= {() => togToDoListModal()} >
+            <Text style={{ fontSize: 25, color: colors.blue }}>
+                +
+            </Text>
+        </TouchableOpacity>
+    </View>
+    </>
   );
 };
+
+const colors = {
+    black: "#2D3436",
+    blue: "#24A6D9",
+    lightBlue: "#A7CBD9",
+    white: "#FFFFFF",
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -107,16 +120,23 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   list: {
-    backgroundColor: 'indianred',
+    backgroundColor: colors.blue,
     borderRadius: 20,
   },
-  addButton: {
+  addList: {
     position: 'absolute',
     bottom: 0,
     right: 0,
-    backgroundColor: 'teal',
-    borderRadius: 100,
-    padding: 20,
+    borderWidth: 2,
+    borderColor: colors.lightBlue,
+    borderRadius: 12,
+    padding: 16,
+  },
+  add: {
+    color: colors.blue,
+    fontWeight: "bold",
+    fontSize: 12,
+    marginTop: 4,
   },
   primary: {
     color: 'teal',

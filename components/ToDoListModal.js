@@ -11,7 +11,7 @@ export default class ToDoListModal extends React.Component {
 
         const list = { name }
 
-        this.props.addList(list); 
+        this.props.addList(list);
 
         this.setState({name: "" });
         //this.props.closeModal();
